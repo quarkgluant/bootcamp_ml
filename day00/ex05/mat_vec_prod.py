@@ -22,7 +22,7 @@ def mat_vec_prod(x, y):
     ft_prod = np.zeros((x.shape[0], 1), dtype=int)
     for index, vector in enumerate(x):
         ft_temp = 0
-        for x_item, y_item in np.dstack((vector, y.reshape(7,)))[0]:
+        for x_item, y_item in np.dstack((vector, y.reshape(vector.shape)))[0]:
             ft_temp += x_item * y_item
         ft_prod[index] = int(ft_temp)
     return ft_prod
