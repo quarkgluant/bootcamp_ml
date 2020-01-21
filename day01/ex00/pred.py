@@ -40,3 +40,15 @@ if __name__ == '__main__':
     theta3 = np.array([[0.05], [1.], [1.], [1.]])
     print(predict_(theta3, X3))
     # => array([[22.25], [44.45], [66.65], [88.85]])
+    # """réponses aux questions du sujet:
+    # Q: What is a hypothesis and what is it goal ?
+    # A: An hypothesis is an explanation about the relationship between data populations that is interpreted
+    # probabilistically and a candidate model that approximates a target function for mapping inputs to outputs
+    # Q: Considering a training set with 4242 examples and 3 features. How many components are
+    # there in the vector ?
+    # A: the theta vector has shape (4, 1)
+    # Q: Considering the vector has a shape (6,1) and the output has the shape (7,1). What is the
+    # shape of the training set X ?
+    # A: X[x ,y] x theta[6, 1] = output[7, 1]
+    #  so, x = 7 and y = 5 (+ 1), so X.shape = (7, 5)
+    # """
