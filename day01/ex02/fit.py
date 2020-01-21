@@ -126,3 +126,10 @@ if __name__ == '__main__':
     # array([[41.99..], [0.97..], [0.77..], [-1.20..]])
     print(predict_(theta2, X2))
     # array([[19.5937..], [-2.8021..], [-25.1999..], [-47.5978..]])
+    # Q: Can you explain the different steps in the fit method (hint: you have to talk about J, it
+    # gradient and the theta)?
+    # A:
+    # Q: What happens if you choose a too big learning rate ?
+    # A:
+    # Q: What can you say if you choose a very small learning rate and a reasonnable number of
+    # cycles
