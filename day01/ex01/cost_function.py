@@ -20,6 +20,16 @@ def cost_elem_(theta, X, Y):
     Raises:
     This function should not raise any Exception.
     """
+    if X.size == 0 or theta.size == 0 or Y.size == 0 or \
+            (X.size != 0 and X.shape[1] + 1 != theta.shape[0]) or \
+        X.shape[0] != Y.shape[0]:
+        return None
+    # on commence par rajouter une colonne x0 qui vaut 1
+    X_1 = np.insert(X, 0, [1.], axis=1)
+    Y_hat = np.dot(X_1, theta)
+    m = X.shape[0]
+    return 0.5 / X.shape[0] * (Y_hat - Y) ** 2
+
 
 def cost_(theta, X, Y):
     """
@@ -36,29 +46,7 @@ def cost_(theta, X, Y):
     Raises:
     This function should not raise any Exception.
     """
-
-def predict_(theta, X):
-    """
-    Description:
-    Prediction of output using the hypothesis function (linear model).
-    Args:
-    theta: has to be a numpy.ndarray, a vector of dimension (number of
-    features + 1, 1).
-    X: has to be a numpy.ndarray, a matrix of dimension (number of
-    training examples, number of features).
-    Returns:
-    pred: numpy.ndarray, a vector of dimension (number of the training
-    examples,1).
-    None if X does not match the dimension of theta.
-    Raises:
-    This function should not raise any Exception.
-    """
-    if X.size == 0 or theta.size == 0 or \
-            (X.size != 0 and X.shape[1] + 1 != theta.shape[0]):
-        return None
-    # on commence par rajouter une colonne x0 qui vaut 1
-    X = np.insert(X, 0, [1.], axis=1)
-    return np.dot(X, theta)
+    return cost_elem_(theta, X, Y).sum()
 
 
 if __name__ == '__main__':
@@ -77,3 +65,12 @@ if __name__ == '__main__':
     # => array([[1.3203125], [0.7503125], [0.0153125], [2.1528125]])
     print(cost_(theta2, X2, Y2))
     # => 4.238750000000004
+
+    # réponses aux questions
+    # Q: What is the cost function and what is it goal ?
+    # A:
+    # Q: What is the interest of the cost function derivative (you may look few more videos of the
+    # week 2 on coursera) ?
+    # A:
+    # Q: Bonus (hard) question : Are there other forms of the cost function ? Cite at least 2
+    # definitions (with formula) of the cost function and give a very short description.

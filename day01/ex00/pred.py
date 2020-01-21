@@ -23,8 +23,8 @@ def predict_(theta, X):
             (X.size != 0 and X.shape[1] + 1 != theta.shape[0]):
         return None
     # on commence par rajouter une colonne x0 qui vaut 1
-    X = np.insert(X, 0, [1.], axis=1)
-    return np.dot(X, theta)
+    X_1 = np.insert(X, 0, [1.], axis=1)
+    return np.dot(X_1, theta)
     
 if __name__ == '__main__':
     X1 = np.array([[0.], [1.], [2.], [3.], [4.]])
