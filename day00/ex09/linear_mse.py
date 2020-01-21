@@ -19,35 +19,24 @@ def linear_mse(x, y, theta):
     """
     if x.size == 0 or y.size == 0 or theta.size == 0 or\
             (x.size != 0 and x.shape[1] != theta.shape[0]) or \
-            y.shape[1] != 1 or theta.shape[1] != 1 or \
             x.shape[0] != y.shape[0]:
         return None
     # h = x.dot(theta)
-    h = np.zeros(x.shape)
-    for x_item, theta_item in np.dstack((x, theta))[0]:
+    h = np.zeros((x.shape[1], theta.shape[0]))
+    sigma = []
+    ft_prod = np.zeros((x.shape[0], 1), dtype=int)
+    for index, vector in enumerate(x):
+        ft_temp = 0
+        for x_item, y_item in np.dstack((vector, y.reshape(vector.shape)))[0]:
+            ft_temp += x_item * y_item
+        ft_prod[index] = int(ft_temp)
 
 
-
-
-def mse(y, y_hat):
-    """Computes the mean squared error of two non-empty numpy.ndarray, using
-    a for-loop. The two arrays must have the same dimensions.
-    Args:
-    y: has to be an numpy.ndarray, a vector.
-    y_hat: has to be an numpy.ndarray, a vector.
-    Returns:
-    The mean squared error of the two vectors as a float.
-    None if y or y_hat are empty numpy.ndarray.
-    None if y and y_hat does not share the same dimensions.
-    Raises:
-    This function should not raise any Exception.
-    """
-    if y.size == 0 or y_hat.size == 0 or (y.size != 0 and y_hat.shape[0] != y.shape[0]):
-        return None
-    ft_temp = 0.0
-    for x_item, y_item in np.dstack((y, y_hat))[0]:
-        ft_temp += (x_item - y_item) ** 2
-    return ft_temp / y.size
+    delta = np.asarray(sigma)
+    sigma = 0.0
+    for delta_item, y_item in np.dstack((delta, y))[0]:
+        sigma += (delta_item - y_item) ** 2
+    return sigma / x.shape[0]
 
 
 if __name__ == '__main__':
