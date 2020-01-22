@@ -18,7 +18,7 @@ def vec_mse(y, y_hat):
     """
     if y.size == 0 or y_hat.size == 0 or (y.size != 0 and y_hat.shape[0] != y.shape[0]):
         return None
-    return (np.transpose(y - y_hat) * (y - y_hat)).sum() / y.size
+    return np.dot(np.transpose(y - y_hat), (y - y_hat)).sum() / y.shape[0]
 
 
 if __name__ == '__main__':
