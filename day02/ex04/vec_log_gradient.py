@@ -3,8 +3,6 @@
 
 import numpy as np
 
-
-
 def vec_log_gradient_(x, y_true, y_pred):
     """
     Compute the gradient.
@@ -22,7 +20,7 @@ def vec_log_gradient_(x, y_true, y_pred):
     y_t, y_p = np.array(y_true), np.array(y_pred)
     # gradient = np.dot(X.T, (y_p - y_t)) / y_t.shape[0]
     # gradient = ((y_p - y_t) * X.T) / X.shape[0]
-    gradient = np.dot((y_p - y_t),  X) #/ y_t.size
+    gradient = np.dot((y_p - y_t),  X)
     return gradient
 
 if __name__ == '__main__':
