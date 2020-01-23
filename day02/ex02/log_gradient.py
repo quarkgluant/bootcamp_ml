@@ -3,8 +3,6 @@
 
 import numpy as np
 
-
-
 def log_gradient_(x, y_true, y_pred):
     """
     Compute the gradient.
@@ -18,11 +16,33 @@ def log_gradient_(x, y_true, y_pred):
     Raises:
     This function should not raise any Exception.
     """
-    X = np.array(x)
-    y_t, y_p = np.array(y_true), np.array(y_pred)
+    gradient = []
+    i = 0
+    if type(y_true) == list:
+        g = 0.0
+        for i, x_row in enumerate(x):
+            g = 0.0
+            for j in range(len(x_row)):
+                g += x_row[j] * (y_pred[i] - y_true[i])
+            gradient.append(g)
+        #     g += x_item * (y_item_p - y_item_t)
+        #
+        # for x_row, y_item_t, y_item_p in zip(x, y_true, y_pred):
+        #     print(f"x_row={x_row}, y_true: {y_true}, y_pred: {y_pred}")
+        #     g = 0.0
+        #     # for x_item in x_row:
+        #     for x_item in x_row:
+        #         g += x_item * (y_item_p - y_item_t)
+        #         gradient.append(g)
+    else:
+        for x_item in x:
+            g = 0.0
+            g += x_item * (y_pred - y_true)
+            gradient.append(g)
+
     # gradient = np.dot(X.T, (y_p - y_t)) / y_t.shape[0]
     # gradient = ((y_p - y_t) * X.T) / X.shape[0]
-    gradient = np.dot((y_p - y_t),  X) #/ y_t.size
+    # gradient = np.dot((y_p - y_t),  X) #/ y_t.size
     return gradient
 
 if __name__ == '__main__':

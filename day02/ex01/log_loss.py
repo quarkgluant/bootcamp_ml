@@ -18,9 +18,11 @@ def log_loss_(y_true, y_pred, m, eps=1e-15):
     This function should not raise any Exception.
     """
     y_t, y_p = np.array(y_true), np.array(y_pred)
-    cost = (1 / m) * (((-y_t).T * np.log(y_p + eps)) - ((1 - y_t).T * np.log(1 - y_p + eps)))
-    # cost = (1 / m) * (((-y_t).T @ np.log(y_p + eps)) - ((1 - y_t).T @ np.log(1 - y_p + eps)))
-    return cost if isinstance(cost, float) else cost.sum()
+    cost = 0.0
+    for y_item_t, y_item_p in np.dstack((y_t, y_p))[0]:
+        cost += (1 / m) * (((-y_item_t) * np.log(y_item_p + eps)) - ((1 - y_item_t) * np.log(1 - y_item_p + eps)))
+
+    return cost
 
 
 if __name__ == '__main__':

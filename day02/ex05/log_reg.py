@@ -13,6 +13,7 @@ class LogisticRegressionBatchGd:
         # Your code here (e.g. a list of loss for each epochs...)
         self.loss_list =[]
         self.alpha_list = []
+        self.threshold = .5
 
     def fit(self, x_train, y_train):
         """
@@ -27,6 +28,24 @@ class LogisticRegressionBatchGd:
         This method should not raise any Exception.
         """
         # Your code here
+        m, n = x_train.shape[:2]
+        # weights initialization
+        self.thetas = np.zeros(n)
+        gap = int(self.max_iter / 10)
+
+        for i in range(self.max_iter):
+            z = np.dot(x_train, self.thetas)
+            h = self.__sigmoid_(z)
+            gradient = self.__vec_log_gradient_(x_train, y_train, h)
+            # gradient = np.dot(x_train.T, (h - y_train)) / y_train.size
+            self.thetas -= self.alpha / m * gradient
+
+            if self.verbose and i % gap == 0:
+                z = np.dot(x_train, self.thetas)
+                h = self.__sigmoid_(z)
+                print(f'epoch: {i} loss: {self.__vec_log_loss_(y_train, h, y_train.shape[0])} \t')
+
+        return self
 
     def predict(self, x_train):
         """
@@ -39,7 +58,7 @@ class LogisticRegressionBatchGd:
         Raises:
         This method should not raise any Exception.
         """
-        return np.dot(x_train, self.thetas)
+        return self.__sigmoid_(np.dot(x_train, self.thetas)) >= self.threshold
 
     def score(self, x_train, y_train):
         """
@@ -53,7 +72,8 @@ class LogisticRegressionBatchGd:
         Raises:
         This method should not raise any Exception.
         """
-        # Your code here
+        return (self.predict(x_train) == y_train).mean()
+
 
     def __sigmoid_(self, x):
         """
@@ -116,9 +136,9 @@ if __name__ == '__main__':
     # from log_reg import LogisticRegressionBatchGd
 
     # We load and prepare our train and test dataset into x_train, y_train and x_test, y_test
-    df_train = pd.read_csv('dataset/train_dataset_clean.csv', delimiter=',', header=None, index_col=False)
+    df_train = pd.read_csv('/home/quark/Projects/42/bootcamp_ml/day02/ex05/dataset/train_dataset_clean.csv', delimiter=',', header=None, index_col=False)
     x_train, y_train = np.array(df_train.iloc[:, 1:82]), df_train.iloc[:, 0]
-    df_test = pd.read_csv('dataset/test_dataset_clean.csv', delimiter=',', header=None, index_col=False)
+    df_test = pd.read_csv('/home/quark/Projects/42/bootcamp_ml/day02/ex05/dataset/test_dataset_clean.csv', delimiter=',', header=None, index_col=False)
     x_test, y_test = np.array(df_test.iloc[:, 1:82]), df_test.iloc[:, 0]
     # We set our model with our hyperparameters : alpha, max_iter, verbose and learning_rate
     model = LogisticRegressionBatchGd(alpha=0.01, max_iter=1500, verbose=True, learning_rate='constant')
