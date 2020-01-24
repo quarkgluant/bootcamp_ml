@@ -20,20 +20,12 @@ def log_gradient_(x, y_true, y_pred):
     i = 0
     if type(y_true) == list:
         g = 0.0
-        for i, x_row in enumerate(x):
+        for j in range(len(x[0])):
             g = 0.0
-            for j in range(len(x_row)):
+            for i, x_row in enumerate(x):
                 g += x_row[j] * (y_pred[i] - y_true[i])
             gradient.append(g)
-        #     g += x_item * (y_item_p - y_item_t)
-        #
-        # for x_row, y_item_t, y_item_p in zip(x, y_true, y_pred):
-        #     print(f"x_row={x_row}, y_true: {y_true}, y_pred: {y_pred}")
-        #     g = 0.0
-        #     # for x_item in x_row:
-        #     for x_item in x_row:
-        #         g += x_item * (y_item_p - y_item_t)
-        #         gradient.append(g)
+
     else:
         for x_item in x:
             g = 0.0
