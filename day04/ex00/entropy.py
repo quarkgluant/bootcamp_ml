@@ -19,7 +19,7 @@ def entropy(array):
     n_labels = len(array)
 
     if n_labels <= 1:
-        print(f"Shannon entropy for {array} is {0}")
+        print(f"Shannon entropy for {array} is {0.0}")
         return 0
 
     value, counts = np.unique(array, return_counts=True)
@@ -27,7 +27,7 @@ def entropy(array):
     n_classes = np.count_nonzero(probs)
 
     if n_classes <= 1:
-        print(f"Shannon entropy for {array} is {0}")
+        print(f"Shannon entropy for {array} is {0.0}")
         return 0.0
 
     ent = 0.0
