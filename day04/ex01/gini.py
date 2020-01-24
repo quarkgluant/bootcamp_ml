@@ -48,9 +48,9 @@ if __name__ == '__main__':
     gini(np.array(['0', '0', '1', '0', 'bob', '1']))
     # Gini impurity for ['0' '0' '1' '0' 'bob' '1'] is 0.6111111111111112
     gini(np.array(['0', 'bob', '1']))
-    # Gini impurity for [0 0 1 0 2 1] is 0.6111111111111112
-    gini(np.array([0, 0, 1, 0, 2, 1]))
     # Gini impurity for ['0' 'bob' '1'] is 0.6666666666666667
+    gini(np.array([0, 0, 1, 0, 2, 1]))
+    # Gini impurity for [0 0 1 0 2 1] is 0.6111111111111112
     gini(np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]))
     # Gini impurity for [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] is 0.0
     gini(np.array([0., 1., 1., 1., 1., 1., 1., 1., 1., 1.]))
