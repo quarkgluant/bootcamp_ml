@@ -78,17 +78,20 @@ def entropy(array):
 
 if __name__ == '__main__':
     # Output examples:
-    information_gain([], np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]) , criterion='gini')
-    information_gain([], np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]) , criterion='entropy')
-    # Information gain between[] and [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] is None with criterion 'gini' and None with criterion 'entropy'
+    information_gain([], np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), criterion='gini')
+    information_gain([], np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), criterion='entropy')
+    # Information gain between[] and [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] is None with criterion 'gini' and None with
+    # criterion 'entropy'
 
     information_gain(np.array(['a', 'a', 'b', 'b']), {1, 2}, criterion='gini')
     information_gain(np.array(['a', 'a', 'b', 'b']), {1, 2}, criterion='entropy')
-    # Information gain between['a' 'a' 'b' 'b'] and {1, 2} is None with criterion 'gini' and None with criterion 'entropy'
+    # Information gain between['a' 'a' 'b' 'b'] and {1, 2} is None with criterion 'gini' and None with criterion
+    # 'entropy'
 
-    information_gain(np.array([0., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]) , criterion='gini')
-    information_gain(np.array([0., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]) , criterion='entropy')
-    # Information gain between[0. 1. 1. 1. 1. 1. 1. 1. 1. 1.] and [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] is 0.18 with criterion 'gini' and 0.4689955935892812 with criterion 'entropy'
+    information_gain(np.array([0., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), criterion='gini')
+    information_gain(np.array([0., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), np.array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]), criterion='entropy')
+    # Information gain between[0. 1. 1. 1. 1. 1. 1. 1. 1. 1.] and [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] is 0.18 with
+    # criterion 'gini' and 0.4689955935892812 with criterion 'entropy'
 
     information_gain(np.array(['0', '0', '1', '0', 'bob', '1']), np.array(['0', 'bob', '1']), criterion='gini')
     information_gain(np.array(['0', '0', '1', '0', 'bob', '1']), np.array(['0', 'bob', '1']), criterion='entropy')
