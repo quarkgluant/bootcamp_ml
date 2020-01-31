@@ -127,6 +127,8 @@ class LogisticRegressionBatchGd:
         y_t, y_p = np.array(y_true), np.array(y_pred)
         cost = (1 / m) * (((-y_t).T * np.log(y_p + eps)) - ((1 - y_t).T * np.log(1 - y_p + eps)))
         # cost = (1 / m) * (((-y_t).T @ np.log(y_p + eps)) - ((1 - y_t).T @ np.log(1 - y_p + eps)))
+        # loss = (np.dot(y_train, np.log(np.add(y_pred, eps))) + np.dot((1 - y_train), np.log(1 - y_pred + eps))) * (-1 / m)
+        # add fonction loss de jmaisonn (pas forcèment correcte !)
         return cost if isinstance(cost, float) else cost.sum()
 
 
